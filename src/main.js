@@ -8,6 +8,11 @@ Vue.config.productionTip = false;
 
 Vue.use(VueToastify, {
   position: "top-right",
+  canTimeout: true,
+  errorDuration: 500,
+  successDuration: 100,
+  alertInfoDuration: 100,
+  duration: 100,
 });
 
 new Vue({

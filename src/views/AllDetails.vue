@@ -1,7 +1,5 @@
 <template>
   <div>
-  
-
     <v-card id="card">
       <v-card-title>
         <v-text-field
@@ -13,12 +11,12 @@
         ></v-text-field>
       </v-card-title>
       <v-data-table
-         id="table3"
+        id="table3"
         :headers="headers"
         :items="posts"
         :search="search"
         :items-per-page="5"
-         >
+      >
         <template v-slot:item="row">
           <tr>
             <td>{{ row.item.id }}</td>
@@ -32,10 +30,16 @@
             <td>{{ row.item.address }}</td>
             <td>{{ row.item.department }}</td>
             <td>{{ row.item.roomtype }}</td>
-            <td><v-btn @click="edit(row.item.id)"  class="btn1"   > Edit</v-btn></td>
+            <td>
+              <v-btn @click="edit(row.item.id)" class="btn1" color="green">
+                Edit</v-btn
+              >
+            </td>
 
             <td>
-              <v-btn @click="deleteData(row.item.id)"  class="btn2" >Delete</v-btn>
+              <v-btn @click="deleteData(row.item.id)" class="btn2" color="red"
+                >Delete</v-btn
+              >
             </td>
           </tr>
         </template></v-data-table
@@ -76,9 +80,7 @@ export default {
   created() {
     console.log("created");
     this.getData();
-
   },
-
 
   methods: {
     edit(name) {
@@ -93,18 +95,16 @@ export default {
         this.posts = response.data;
       });
     },
-   async deleteData(id) {
+    async deleteData(id) {
       Vue.$vToastify.info("Successfully deleted value");
       console.log(name);
       console.log(id);
-       axios.delete(` http://localhost:3000/loki/${id}`).then((response) => {
+      axios.delete(` http://localhost:3000/loki/${id}`).then((response) => {
         console.log(response.data);
         this.posts = response.data;
-      this.getData();
-
-      
-     
+        this.getData();
       });
+      window.location.reload(false);
     },
   },
 };
@@ -134,11 +134,7 @@ h2 {
   color: white;
 }
 .btn2:hover {
-  background-color:red;
+  background-color: red;
   color: white;
 }
-
-
-
-
 </style>

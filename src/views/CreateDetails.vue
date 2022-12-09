@@ -2,7 +2,7 @@
   <div style="background-color: #efefef">
     <h2 style="margin-left: 550px">Enter Patient details</h2>
 
-    <v-form @submit="postData" id="from1" ref="signUp">
+    <v-form @submit.prevent="postData" id="from1" ref="signUp">
       <v-text-field
         label="PatientId"
         type="text"
@@ -21,7 +21,7 @@
         type="text"
         label="Email"
         v-model="form.email"
-        :rules="emailValidetion"
+        :rules="emailValidation"
       />
       <v-text-field type="number" label="Contact" v-model="form.contact" />
       <v-textarea
@@ -30,7 +30,7 @@
         label="Address"
       ></v-textarea>
 
-      <v-text-field type="date" label="Data of brith" v-model="form.dob" />
+      <v-text-field type="date" label="Data of birth" v-model="form.dob" />
       <v-radio-group v-model="form.gender" row cols="12" label="Gender">
         <v-radio label="Male" value="male"></v-radio>
         <v-radio label="Female" value="Female"></v-radio>
@@ -38,7 +38,7 @@
       </v-radio-group>
       <v-select
         :items="department"
-        label="Disease releted"
+        label="Disease related"
         v-model="form.department"
       ></v-select>
 
@@ -68,7 +68,7 @@
           type="submit"
           color="success"
           style="margin-left: 160px"
-          @click="postData"
+          @click.prevent="postData"
           >submit</v-btn
         ></router-link
       >
@@ -96,7 +96,7 @@ export default {
           "Email should containavalid domain.",
         (value) =>
           value.indexOf(".") <= value.length - 3 ||
-          "Email should containavalid domain extension.",
+          "Email should contain a valid domain extension.",
       ],
       items: ["Ac", "NonAc", "SemiAc"],
 
